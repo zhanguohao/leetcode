@@ -36,3 +36,27 @@
 ​	这道题看起来与前面62，63题没什么区别，都是从右上角到右下角，不过这一个求解最少的路径花费，简单的做法就是贪心法，每一步都选最小花费的那个，最终得到的就是最小花费
 
 ​	
+
+```python
+class Solution:
+    def minPathSum(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        row = len(grid)
+        col = len(grid[0])
+
+        for i in range(row):
+            for j in range(col):
+                if i - 1 >= 0 and j - 1 >= 0:
+                    grid[i][j] = min(grid[i][j - 1], grid[i - 1][j]) + grid[i][j]
+                elif i - 1 >= 0:
+                    grid[i][j] = grid[i - 1][j] + grid[i][j]
+                elif j - 1 >= 0:
+                    grid[i][j] = grid[i][j - 1] + grid[i][j]
+
+        return grid[row - 1][col - 1]
+```
+
+​	
