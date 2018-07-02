@@ -2,7 +2,7 @@
 
 [TOC]
 
-## 1、问题描述
+## 1、题目描述
 
 ```
 You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
@@ -30,7 +30,7 @@ Explanation: 342 + 465 = 807.
 
 ## 2、解题思路
 
-​	
+​	这个问题很简单，我们设计两个指针，指向两个链表，并且保存一个进位就可以了，在不断的前进过程中，不断地更新当前位置与进位
 
 ```c
 /**

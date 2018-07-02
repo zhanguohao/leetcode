@@ -6,7 +6,9 @@
 最长不重复字符子串
 ```
 
-## 1、题目要求
+
+
+## 1、题目描述
 
 ```
 Given a string, find the length of the longest substring without repeating characters.

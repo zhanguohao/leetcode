@@ -51,9 +51,11 @@ nums2 = [3, 4]
 
 
 
-## 2、解题方法
+## 2、解题思路
 
 ### 2.1 使用二分查找法
+
+​	
 
 ```c
 double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {
@@ -178,7 +180,9 @@ double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Si
 
 ### 2.2 缓冲数组法
 
-```
+​	这个缓冲法就有点笨拙了，就类似于归并排序里面的，将两个已排好序的数组合并起来，不过我们只需要其中一半即可，这样就找到中位数了，这种办法的好处就是思路非常清晰，简单，但是会占用额外的空间，并且速度不快；
+
+```c
 double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2, int nums2Size) {
 /*
 *   基本思想：
