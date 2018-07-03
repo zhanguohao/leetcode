@@ -154,7 +154,6 @@ class Solution:
                 right += 1
                 windows_sum += A[right]
 
-
             else:
                 windows_sum -= A[left]
                 left += 1
@@ -188,7 +187,76 @@ class Solution:
 
 
 
-### 2.3 
+### 2.3 滑动窗口改进 
+
+​	实际上，前面的方法还是有点复杂，实际上，同样是滑动窗口，并不一定非得要在原来的数组上滑动，也可以在我们构造的累加和数组上滑动
+
+​	例如，构造一个数组，如果right指向的数减去left指向的数能够大于等于K，更新结果值
+
+​	借助双端队列，我们在队列中，保存前面没有判断过的，并且比当前的累积和小的累加和，进行判断，判断完毕以后，就将最小的那个弹出，因为用不到了，还需要向后判断，距离会变大，所以最左端的就用不到了
+
+​	注意，双端队列里面保存的是索引值，这样才计算结果值
+
+​	构造和数列的时候，在前面放置一个0，这样我们才能得到与第一个元素的差值
+
+例如[1,2,3]
+
+和数列
+
+[1,3,6]
+
+​	如果我们不放置一个0在前面，就会发现我们用3-1，6-1，得到的是第2个元素，第2，3元素之和，无法得到第0元素之和
+
+​	所以，放置一个0才可以
+
+
+
+​	这一次时间没有超过限制
+
+```python
+import collections
+
+class Solution:
+    def shortestSubarray(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: int
+        """
+        
+        length = len(A)
+        result = length + 1
+        if length <= 0:
+            return 0
+        sums = [0] + list(itertools.accumulate(A))
+        less_than = collections.deque()
+        
+        for index, cur_sum in enumerate(sums):
+
+            while less_than and cur_sum <= sums[less_than[-1]]:
+                less_than.pop()
+
+            while less_than and cur_sum - sums[less_than[0]] >= K:
+                result = min(result, index - less_than[0])
+                less_than.popleft()
+
+            less_than.append(index)
+
+        
+            
+        if result == length + 1:
+            return -1
+        else:
+            return result
+```
+
+
+
+
+
+
+
+
 
 ​	
 
