@@ -241,8 +241,6 @@ class Solution:
                 less_than.popleft()
 
             less_than.append(index)
-
-        
             
         if result == length + 1:
             return -1
